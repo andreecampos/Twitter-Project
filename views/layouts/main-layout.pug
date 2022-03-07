@@ -1,3 +1,5 @@
+include ../mixins/mixins
+
 doctype html
 html(lang="en")
     head
@@ -5,12 +7,52 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title #{pageTitle} 
-
         link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css', integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO', crossorigin='anonymous')
-
+        link(rel="stylesheet", href="/css/main.css")
     body 
-        block content
+        script. 
+                //9.11 take the payload value (userLoggedInJs) and then we've taken it and injecting it into the page with (!)
+             const userLoggedIn = !{userLoggedInJs}; 
+        .wrapper 
+            .row 
+                nav.col-2
+                    a.blue(href="/")
+                        i.fa-solid.fa-dove 
+                    a(href="/")
+                        i.fa-solid.fa-house 
+                    a(href="/search")
+                        i.fa-solid.fa-search 
+                    a(href="/notifications")
+                        i.fa-solid.fa-bell 
+                    a(href="/messages")
+                        i.fa-solid.fa-envelope
+                    a(href="/profile")
+                        i.fa-solid.fa-user 
+                    a(href="/logout")
+                        i.fa-solid.fa-sign-out-alt 
+                .mainSectionContainer.col-10.col-md-8.col-lg-6
+                    .titleContainer 
+                        //pageTitle come from the payload i app.js
+                        h1 #{pageTitle} 
 
+
+                    //block content is where we inject our other pages
+                    block content 
+                div.d-none.d-md-block.col-md-2.col-lg-4
+                    
+
+
+        script(src='https://kit.fontawesome.com/520a07451b.js' crossorigin='anonymous')
         script(src='https://code.jquery.com/jquery-3.6.0.min.js', integrity='sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=', crossorigin='anonymous')
         script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49', crossorigin='anonymous')
         script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js', integrity='sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy', crossorigin='anonymous')
+            
+         //8.1 created scripts to add any additional  javascript files
+        block  scripts
+                
+            
+            
+            
+            
+            //6.5  adding a common javascript file
+        script(src="/js/common.js") 

@@ -1,0 +1,27 @@
+extends layouts/main-layout.pug
+
+block content
+    if !profileUser
+        span.errorMessage check the url you are trying to access
+    else
+        .profileHeaderContainer  
+            .coverPhotoContainer
+
+                .userImageContainer 
+                    img(src=profileUser.profilePic, alt="User profile image")
+        
+            .userDetailsContainer
+                span.displayName #{profileUser.firstName} #{profileUser.lastName} 
+                span.displayEmail #{profileUser.email} 
+                span.username @#{profileUser.username} 
+
+                .followersContainer 
+                    a(href=`/profile/${profileUser.username}/following`)
+                        span.value #{0}
+                        span Following 
+                    a(href= `/profile/${profileUser.username}/followers`)
+                        span.value #{0}
+                        span Followers
+
+block scripts   
+    script(src="/js/profile.js") 

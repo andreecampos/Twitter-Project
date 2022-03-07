@@ -1,6 +1,12 @@
 extends layouts/main-layout.pug
 
 block content
-    h1 This is Home
+    //to call a function from mixins we have to put (+)
+    +createPostForm(userLoggedIn)
+    //7.7we need a element to add html in the page
+    .postsContainer
 
-      
+    +createReplyModal(userLoggedIn)
+
+block scripts   
+    script(src="/js/home.js") 
