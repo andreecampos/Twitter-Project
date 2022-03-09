@@ -5,7 +5,18 @@ const middleware = require ('./middleware')
 //const multer = require('multer')
 //const ejs = require('ejs')
 const path = require('path')
+const multer = require('multer')
 const bodyParser = require("body-parser")
+const storage = multer.diskStorage({
+  destination: (req, file, cb) =>{
+    cb(null,'./public/images')
+  },
+  filename:(req, file, cb) =>{
+    cb(null, file.originalname)
+  }
+})
+const upload = multer({storage: storage})
+
 const mongoose = require("./database") //dont need "mongoose", because allt are i database.js
 //--------- 4.21 Sessions ----------
 //npm install express-session, and the use the pakege installed on the page
@@ -77,6 +88,26 @@ app.get("/", middleware.requireLogin,(req, res,  next) => {
     }
     res.render("home", payload);
   });
+
+
+
+
+
+
+
+app.get("/", (req, res) =>{
+    res.sendFile("profilePage", {roost:__dirname})
+})
+
+app.post("/subir", upload.single('archivo'),(req, res)=>{
+    console.log(req.file)
+    res.send("File lyckades skickas")
+})
+
+
+
+
+
 
 
 

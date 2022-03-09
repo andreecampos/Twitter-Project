@@ -22,6 +22,15 @@ block content
                     a(href= `/profile/${profileUser.username}/followers`)
                         span.value #{0}
                         span Followers
+                .uploadContainer
+                    form(action='/subir', method='post', enctype='multipart/form-data')
+                        input(type='file', name='archivo')
+                        button(type='submit') Enviar
+
+
+
+    
 
 block scripts   
     script(src="/js/profile.js") 
+    //script(src="/app.js")

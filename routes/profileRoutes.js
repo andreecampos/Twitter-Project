@@ -7,15 +7,19 @@ const User = require ('../schemas/UserSchema');
 const multer = require("multer")
 
 
+
 router.get("/", (req, res, next) => {
  const payload = {
      pageTitle: req.session.user.username,
      userLoggedIn: req.session.user,
-     userLoggedInJs : JSON.stringify(req.session.user),
-     profileUser:req.session.user
+     userLoggedInJs: JSON.stringify(req.session.user),
+     profileUser:req.session.user,
+     posts:[]
  }
- res.status(200).render("userPage", payload);
+ res.status(200).render("profilePage",payload);
 })
+
+
 
 async function getPayload(username, userLoggedIn){
 

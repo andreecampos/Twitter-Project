@@ -2,10 +2,16 @@ extends layouts/main-layout.pug
 
 block content
     
-    
-    .postsContainer
+        each post  in posts 
 
-    +createReplyModal(userLoggedIn)
+            //.userImageContainer
+                img(src='${test.profilePic}')
 
+            ul.userContainer      
+                .firstName= test.firstName
+                .lastName= test.lastName
+                .usernamee= test.username
+            .content= post.content
+            
 block scripts   
-    script(src="/js/profile .js") 
+    script(src="/js/profilePage.js") 

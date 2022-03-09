@@ -207,3 +207,28 @@ button span {
     font-weight: bold;
     margin-right: 5px;
 }
+
+.userContainer{
+    
+    display: flex;
+    padding-left: var (var(--spacing));
+    
+}
+.lastName {
+ font-weight: bold;
+padding-left: 10px;
+}
+.firstName{
+font-weight: bold;
+padding-left: 10px;
+}
+.usernamee{
+    color: var(--blue);
+    padding-left: 30px;
+}
+.content{
+color: black;
+padding-bottom: 5px;
+padding-left: 10px;
+
+}

@@ -29,11 +29,20 @@ router.get("/", async (req, res,  next) => {
     
   })
 
+router.get("/", async (req,res,next)=>{
+    const results= await getPosts({});
+    res.status(200).send(results);
+
+})
 
 router.get("/:id", async (req, res,  next) => {
    
-    
-    return res.status(200).send("this is awesome")
+    const postId = req.params.id
+
+    const results = await getPosts({_id: postId});
+    res.status(200).send(results);
+    console.log(results);
+    /*return res.status(200).send("this is awesome")
     Post.find()
    
     .populate("postedBy") 
@@ -44,7 +53,7 @@ router.get("/:id", async (req, res,  next) => {
     .catch(error => {
         console.log(error);
         res.sendStatus(400);
-    })
+    })*/
     
    
  })
@@ -155,10 +164,11 @@ router.post("/", async (req, res,  next) => {
 res.status(200).send(post)
 })
 
-async function getPosts(){
-    return res.status(200).send("this is awesome")
+async function getPosts(filter){
+
+    
      
-    const results = await Post.find()
+    const results = await Post.findOne(filter)
    
     .populate("postedBy") 
     .sort({"createdAt": -1})

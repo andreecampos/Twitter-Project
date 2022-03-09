@@ -12,8 +12,6 @@ $(document).ready(()=>{
     //-------8.2 Getting posts from the database------------
     $.get("/api/posts", results =>{
         outputPosts(results, $(".postsContainer"))
-    
- 
      })
 })
 
