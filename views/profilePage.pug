@@ -24,13 +24,14 @@ block content
                         span Followers
                 .uploadContainer
                     form(action='/subir', method='post', enctype='multipart/form-data')
-                        input(type='file', name='archivo')
+                        input(type='file', name='archivo' id='file-upload')
                         button(type='submit') Enviar
+
 
 
 
     
 
 block scripts   
-    script(src="/js/profile.js") 
+    script(src="profile.js") 
     //script(src="/app.js")

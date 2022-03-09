@@ -8,12 +8,14 @@ const multer = require("multer")
 
 
 
-router.get("/", (req, res, next) => {
+router.get("/", async (req, res, next) => {
+    
+    const user = await User.findOne({username:req.session.user.username })
  const payload = {
-     pageTitle: req.session.user.username,
-     userLoggedIn: req.session.user,
-     userLoggedInJs: JSON.stringify(req.session.user),
-     profileUser:req.session.user,
+     pageTitle: user.username,
+     userLoggedIn: user,
+     userLoggedInJs: JSON.stringify(user),
+     profileUser:user,
      posts:[]
  }
  res.status(200).render("profilePage",payload);

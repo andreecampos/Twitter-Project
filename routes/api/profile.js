@@ -59,7 +59,7 @@ router.get("/:username", async (req, res,  next) => {
 
    
  })
-
+/*
  router.get("/:username", (req, res,  next) => {
 
    const payload ={
@@ -69,7 +69,7 @@ router.get("/:username", async (req, res,  next) => {
        userId: req.params.username //the post id
    }
    res.status(200).render("profilePage", payload);
- })
+ })*/
 
 
 

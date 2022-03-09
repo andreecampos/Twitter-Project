@@ -59,7 +59,9 @@ const postRoute = require('./routes/postRoutes');
 const userRoute = require('./routes/api/profile');
 
 //------API ROUTES -------
-const postsApiRoute = require('./routes/api/posts')
+const postsApiRoute = require('./routes/api/posts');
+const User = require("./schemas/UserSchema");
+const { log } = require("console");
 
 // we say to app use it, and should handle
 app.use("/login", loginRoute);
@@ -99,8 +101,9 @@ app.get("/", (req, res) =>{
     res.sendFile("profilePage", {roost:__dirname})
 })
 
-app.post("/subir", upload.single('archivo'),(req, res)=>{
-    console.log(req.file)
+app.post("/subir", upload.single('archivo'),async (req, res)=>{
+  console.log(req.session.user)
+    await User.findOneAndUpdate({username:req.session.user.username }, {profilePic:  `/images/${req.file.filename}`})
     res.send("File lyckades skickas")
 })
 
