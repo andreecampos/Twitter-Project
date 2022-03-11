@@ -102,9 +102,27 @@ app.get("/", (req, res) =>{
 })
 
 app.post("/subir", upload.single('archivo'),async (req, res)=>{
-  console.log(req.session.user)
-    await User.findOneAndUpdate({username:req.session.user.username }, {profilePic:  `/images/${req.file.filename}`})
-    res.send("File lyckades skickas")
+
+  console.log(req.body)
+  
+  //  const firstName = req.body.firstName // sparar den som vi skcikar in
+  //  const lastName = req.body.lastName 
+
+   const user = await User.findOne({username:req.session.user.username})// tener una relferencia
+
+   user.firstName = req.body.firstName //preparamos para actualizar la bade de datos
+   user.lastName = req.body.lastName
+  //förberreda
+
+  if(req.file) { //om nån har laddat up en file så ändrar vi
+
+   user.profilePic = `/images/${req.file.filename}`
+  //await User.findOneAndUpdate({username:req.session.user.username }, {profilePic:  `/images/${req.file.filename}`})
+
+  }
+  await user.save() //efter ändringar så sparar vi 
+
+    res.redirect("/profile")
 })
 
 
