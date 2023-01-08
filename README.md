@@ -1,4 +1,5 @@
-# twitter-clone App
+# twitter-clone App using Mongodb, NodeJS, Pug, JavaScript.
+
 # Description
 ### Create account
 A new user should be able to create an account on the service.
